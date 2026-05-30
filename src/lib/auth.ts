@@ -5,6 +5,8 @@ import { prisma } from './prisma'
 import bcrypt from 'bcryptjs'
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  secret: process.env.AUTH_SECRET ?? process.env.NEXTAUTH_SECRET,
+  session: { strategy: "jwt" },
   providers: [
     Discord({
       clientId: process.env.DISCORD_CLIENT_ID!,
@@ -33,7 +35,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     jwt({ token, user, account, profile }) {
       if (user) token.name = user.name
-      // When signing in with Discord, store the Discord user ID
       if (account?.provider === 'discord' && profile) {
         token.discordId = (profile as any).id
       }
@@ -42,7 +43,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     session({ session, token }) {
       if (token.sub) session.user.id = token.sub
       if (token.name) session.user.name = token.name
-      // Pass Discord ID to session so dashboard can fetch bot data
       if (token.discordId) (session.user as any).discordId = token.discordId
       return session
     },

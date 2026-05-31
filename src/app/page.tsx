@@ -53,7 +53,7 @@ export default function Home() {
               <path d="M19 4 L22 13 L31 13 L24 19 L27 28 L19 22 L11 28 L14 19 L7 13 L16 13 Z" stroke="#38bdf8" strokeWidth="1.5" strokeLinejoin="round" />
             </svg>
           </div>
-          <span className="font-bold text-lg tracking-tight">CODE<span className="text-[#38bdf8]">Quest</span></span>
+          <span className="font-bold text-lg tracking-tight">Code<span className="text-[#38bdf8]">Quest</span></span>
         </div>
         <a href={ADD_BOT_URL} target="_blank" rel="noopener noreferrer" className="text-sm font-medium px-4 py-2 rounded-lg bg-[#38bdf8] text-[#050a18] hover:bg-[#7dd3fc] transition-colors">Add to Discord</a>
       </nav>
